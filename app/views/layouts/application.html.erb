@@ -5,10 +5,33 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+<link rel="stylesheet/less" type="text/css" href="/style.less">
+<script type="/less.js"></script>
+
 </head>
 <body>
 
-<%= yield %>
+<header>
+	<div id="content">
+<div class="wrapper">
+
+<% flash.each do |name,msg|%>
+<%= content_tag :div,msg,class: "flash #{name}" %>
+<% end %>
+<%= yield%>
+
+</div>
+</div>
+</header>
+
+<footer>
+
+<div class="wrapper">
+
+Ribbits,a twitter clone <img src="/gfx/rails.png">
+</div>
+
+</footer>
 
 </body>
 </html>
