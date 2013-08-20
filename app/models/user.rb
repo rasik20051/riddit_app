@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
 
+
 	before_validation :prep_email
 
 	before_save :create_avatar_url
 
+	has_many :ribbits
+
 	attr_accessible :avatar_url, :email, :name , :password, :password_confirmation, :username
-	
+
 	has_secure_password
 
 	validates :name, presence: true
