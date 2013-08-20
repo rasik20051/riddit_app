@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
 
   	if user && user.authenticate(params[:password])
   		session[:user_id]= user.id
-  		redirect_to root_path,notice: "Logged In"
+  		redirect_to root_url,notice: "Logged In"
   	else
 
   		flash.now[:error]="Wrong username or password"
-  		redirect_to root_path
+  		redirect_to root_url
 	end
   end
 

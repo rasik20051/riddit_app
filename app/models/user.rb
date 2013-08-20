@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 	before_save :create_avatar_url
 
 	has_many :ribbits
-	has_many :followers ,through :follower_relationships
-	has_many :followeds, through :followed_relationships
+	has_many :followers ,through: :follower_relationships
+	has_many :followeds, through: :followed_relationships
 
 	attr_accessible :avatar_url, :email, :name , :password, :password_confirmation, :username
 
