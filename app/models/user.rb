@@ -1,22 +1,21 @@
 class User < ActiveRecord::Base
+attr_accessible :avatar_url, :email, :name , :password, :password_confirmation, :username
+
+has_secure_password
+
+has_many :ribbits
+has_many :followers ,through: :follower_relationships
+has_many :followeds, through: :followed_relationships
 
 
-	before_validation :prep_email
+before_validation :prep_email
+before_save :create_avatar_url
 
-	before_save :create_avatar_url
+validates :name, presence: true
+validates :username, uniqueness: true, presence: true
 
-	has_many :ribbits
-	has_many :followers ,through: :follower_relationships
-	has_many :followeds, through: :followed_relationships
-
-	attr_accessible :avatar_url, :email, :name , :password, :password_confirmation, :username
-
-	has_secure_password
-
-	validates :name, presence: true
-	validates :username, uniqueness: true, presence: true
-
-	validates :email, uniqueness: true, presence: true, format: {with: /^[\w.+-]+@([\w]+.)+\w+$/,
+validates :email, uniqueness: true, presence: true, 
+format: {with: /^[\w.+-]+@([\w]+.)+\w+$/,
 		multiline: true}
 
 def following? user

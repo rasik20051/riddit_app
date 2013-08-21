@@ -3,13 +3,16 @@ Ribbitapp::Application.routes.draw do
 
   resources :ribbits
 
-  get "sessions/new"
-  post "sessions/create"
-  get "sessions/destroy"
+
   resources :users
-root to: 'users#new'
+  
+  root to: 'users#new'
 
 get 'buddies', to: 'users#buddies', as: 'buddies'
+
+  get 'sessions/new'
+  post 'sessions/create'
+  get 'sessions/destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
